@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group 'ru.uniz'
+version '1.0-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+
+repositories {
+    mavenCentral()
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+
+dependencies {
+    implementation name: 'Siebel'
+    implementation name: 'SiebelJI_rus'
+    // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
+    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.13.4'
+    // https://mvnrepository.com/artifact/commons-io/commons-io
+    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            from(components.java)
+//        }
+//    }
+//}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
