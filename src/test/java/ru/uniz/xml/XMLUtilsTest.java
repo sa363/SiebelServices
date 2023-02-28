@@ -1,8 +1,9 @@
-package ru.uniz;
+package ru.uniz.xml;
 
 import com.siebel.data.SiebelPropertySet;
 import com.siebel.eai.SiebelBusinessServiceException;
 import org.junit.jupiter.api.Test;
+import ru.uniz.xml.XMLUtils;
 
 import static org.junit.jupiter.api.Assertions.*;
 

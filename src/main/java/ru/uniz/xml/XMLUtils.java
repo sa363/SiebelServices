@@ -1,4 +1,4 @@
-package ru.uniz;
+package ru.uniz.xml;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

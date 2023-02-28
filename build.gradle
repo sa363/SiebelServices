@@ -1,9 +1,10 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'ru.uniz'
-version '1.0-SNAPSHOT'
+version '1.0'
 sourceCompatibility = '1.8'
 
 
@@ -19,11 +20,15 @@ dependencies {
     implementation name: 'Siebel'
     implementation name: 'SiebelJI_rus'
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
-    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.14.1'
+//    implementation group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-xml', version: '2.13.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.2'
+//    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2'
+//    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.2'
+//    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.2'
     // https://mvnrepository.com/artifact/commons-io/commons-io
-    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+//    implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+//    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+//    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
 test {
@@ -33,3 +38,10 @@ test {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
+task copyToLib(type: Copy) {
+    into "${buildDir}/output/libs"
+    from configurations.runtimeClasspath
+}
+
+build.dependsOn(copyToLib)

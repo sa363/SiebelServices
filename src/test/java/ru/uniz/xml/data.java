@@ -1,4 +1,4 @@
-package ru.uniz;
+package ru.uniz.xml;
 
 public final class data {
     public static String data = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><SiebelMessage\n" +

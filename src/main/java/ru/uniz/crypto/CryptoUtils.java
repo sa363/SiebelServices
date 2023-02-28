@@ -1,4 +1,4 @@
-package ru.uniz;
+package ru.uniz.crypto;
 
 import com.siebel.data.SiebelPropertySet;
 import com.siebel.eai.SiebelBusinessService;
@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class CryptoUtils extends SiebelBusinessService {
     private enum Methods {
-        CRYPT, DECRYPT
+        HASH512
     }
 
 
@@ -21,10 +21,8 @@ public class CryptoUtils extends SiebelBusinessService {
 
         try {
             switch (Methods.valueOf(methodName.toUpperCase())) {
-                case CRYPT:
+                case HASH512:
                     MessageCrypt(inputPS, outputPS);
-                    break;
-                case DECRYPT:
                     break;
             }
         } catch (IllegalArgumentException | NoSuchAlgorithmException e) {
@@ -37,7 +35,7 @@ public class CryptoUtils extends SiebelBusinessService {
     }
 
     private void MessageCrypt(SiebelPropertySet inputPS, SiebelPropertySet outputPS) throws NoSuchAlgorithmException {
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        MessageDigest digest = MessageDigest.getInstance("SHA-512");
         byte[] hash = digest.digest(inputPS.getProperty("Value").getBytes(StandardCharsets.UTF_8));
         outputPS.setProperty("Value", bytesToHex(hash));
     }
